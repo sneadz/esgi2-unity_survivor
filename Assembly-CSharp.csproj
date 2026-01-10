@@ -51,6 +51,7 @@
     <Compile Include="Assets\Scripts\Enemies\Interfaces\IPlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyData.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\PlayerTest\PlayerTest.cs" />
     <None Include="Library\PackageCache\com.unity.ai.navigation@5218e4bf7edc\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.burst@1df634d836b8\package.json" />
     <None Include="Library\PackageCache\com.unity.test-framework.performance@0840f58e4562\package.json" />
@@ -1006,9 +1007,6 @@
       <Project>{a5124c38-a4a3-1465-023d-e02b06b4e75a}</Project>
       <Name>Unity.InputSystem</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Scripts\Enemies\.gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
