@@ -1,8 +1,4 @@
-﻿/Assets/
-# Rider
-.idea/
-
-# Unity generated
+﻿# Unity generated
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -10,9 +6,19 @@
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
 
-# Visual Studio cache
+# Visual Studio / Rider / VSCode
 .vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -28,9 +34,11 @@ sysinfo.txt
 *.unitypackage
 *.app
 
-# Crashlytics
-crashlytics-build.properties
-
 # OS generated
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
