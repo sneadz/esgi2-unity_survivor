@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6906392385172027514}
   - component: {fileID: 1568759721523104391}
   m_Layer: 9
-  m_Name: Player
+  m_Name: Player 2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,10 +151,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8141477141361612440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96b5e4337373a4a2cb2a05934ab679a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a03bdef1d9aa465a867492946f99eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _rigidbody: {fileID: 6906392385172027514}
+  _rigidbody: {fileID: 0}
   _numberOfJumps: 2
   MoveSpeed: 10
-  JumpForce: 6
+  JumpForce: 10
