@@ -5,6 +5,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Rigidbody _rigidbody;
 
+    // 1. AJOUTE CETTE VARIABLE POUR LE SOLDAT
+    [Header("Animation")]
+    public Animator soldierAnimator; // <--- AJOUT ICI (Glisse ton objet "Soldier" ici dans l'inspecteur)
+
     [Header("Mouvement")]
     [SerializeField] private int _numberOfJumps = 2;
 
@@ -23,6 +27,13 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         _inputDirection = new Vector3(horizontal, 0f, vertical);
 
+        // 2. ENVOIE LA VITESSE A L'ANIMATEUR
+        // On calcule la force du mouvement (0 si on bouge pas, 1 si on appuie à fond)
+        if (soldierAnimator != null) // On vérifie que la case n'est pas vide pour éviter les erreurs
+        {
+            soldierAnimator.SetFloat("Speed", _inputDirection.magnitude); // <--- AJOUT ICI
+        }
+
         if (_jumpCount < _numberOfJumps && Input.GetButtonDown("Jump"))
             Jump();
     }
@@ -34,7 +45,7 @@ public class Player : MonoBehaviour
         move.y = _rigidbody.linearVelocity.y;
         _rigidbody.linearVelocity = move;
 
-        // 🔹 Rotation lissée vers la direction du mouvement (toujours via le Rigidbody)
+        // 🔹 Rotation lissée vers la direction du mouvement
         Vector3 flatDir = new Vector3(_inputDirection.x, 0f, _inputDirection.z);
         if (flatDir.sqrMagnitude > 0.0001f)
         {
