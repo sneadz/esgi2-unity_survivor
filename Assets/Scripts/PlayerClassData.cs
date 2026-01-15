@@ -16,10 +16,5 @@ public class PlayerClassData : ScriptableObject
     public float autoRange = 10f;
     public int autoDamage = 10;
     public Projectile autoBulletPrefab;
-
-    [Header("Tir manuel (Gun)")]
-    public float gunRange = 50f;
-    public int gunDamage = 10;
-    public Projectile gunBulletPrefab;
 }
 

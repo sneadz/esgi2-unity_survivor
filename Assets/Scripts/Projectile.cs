@@ -51,7 +51,8 @@ public class Projectile : MonoBehaviour
         }
 
         // Centralisation de l'application des dégâts
-        if (DamageUtility.ApplyDamage(other, damage))
+        int finalDamage = Mathf.RoundToInt(damage * PlayerXP.playerDamageMultiplier);
+        if (DamageUtility.ApplyDamage(other, finalDamage))
         {
             Destroy(gameObject);
         }
