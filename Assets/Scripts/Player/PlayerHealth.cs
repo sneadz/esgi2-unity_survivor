@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IPlayerHealth
 {
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100f;
+    private float currentHealth;
 
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         Debug.Log("Player hit! HP: " + currentHealth);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0f)
         {
             Die();
         }
@@ -24,6 +24,5 @@ public class PlayerHealth : MonoBehaviour, IPlayerHealth
     void Die()
     {
         Debug.Log("Player dead");
-        // Ici plus tard : Game Over, respawn, etc.
     }
 }
