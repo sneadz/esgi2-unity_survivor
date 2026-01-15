@@ -903,16 +903,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1686515091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a2c5a74d7ff4ea584d71f9835b2474, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b1aea5eefb7a4f0c84d0f54057fc830, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraTPS
+  m_EditorClassIdentifier: Assembly-CSharp::TopDownCamera
   target: {fileID: 3453646883454864358}
-  distance: 6
-  height: 2
+  offset: {x: 0, y: 15, z: -10}
   followSpeed: 10
-  sensitivity: 5000
-  minY: -30
-  maxY: 60
+  pitch: 60
+  yaw: 0
+  rotationDamping: 10
 --- !u!1 &2019694241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,8 +1146,7 @@ MonoBehaviour:
   _numberOfJumps: 1
   MoveSpeed: 10
   JumpForce: 5
-  rotateWithCamera: 1
-  rotationFollowSpeed: 10
+  rotationSpeed: 10
 --- !u!114 &3453646883454864366
 MonoBehaviour:
   m_ObjectHideFlags: 0
