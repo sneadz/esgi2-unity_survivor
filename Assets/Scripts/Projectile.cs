@@ -7,44 +7,53 @@ public class Projectile : MonoBehaviour
     public int damage = 10;
 
     Rigidbody rb;
+    Collider _collider;
+    GameObject _owner;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
     }
 
     public void Launch(Vector3 direction)
     {
+        // Backward compatibility: no owner specified
+        Launch(direction, null);
+    }
+
+    // Nouvelle surcharge: permet de définir un owner pour ignorer les collisions avec le tireur
+    public void Launch(Vector3 direction, GameObject owner)
+    {
+        _owner = owner;
+
+        // Ignorer la collision avec le tireur (owner) pour éviter d'impacter le Player immédiatement
+        if (_owner != null && _collider != null)
+        {
+            var ownerColliders = _owner.GetComponentsInChildren<Collider>();
+            foreach (var oc in ownerColliders)
+            {
+                if (oc != null)
+                    Physics.IgnoreCollision(_collider, oc, true);
+            }
+        }
+
         rb.linearVelocity = direction.normalized * speed;
         Destroy(gameObject, lifeTime);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // 🔴 JOUEUR
-        if (other.CompareTag("Player"))
+        // Ne pas toucher l'owner (sécurité supplémentaire si les collisions ne sont pas ignorées par PhysX)
+        if (_owner != null && other.transform.IsChildOf(_owner.transform))
         {
-            IPlayerHealth playerHealth = other.GetComponent<IPlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damage);
-            }
-
-            Destroy(gameObject);
             return;
         }
 
-        // 🟢 ENNEMI
-        if (other.CompareTag("Enemy"))
+        // Centralisation de l'application des dégâts
+        if (DamageUtility.ApplyDamage(other, damage))
         {
-            IEnemyHealth enemyHealth = other.GetComponent<IEnemyHealth>();
-            if (enemyHealth != null)
-            {
-                enemyHealth.TakeDamage(damage);
-            }
-
             Destroy(gameObject);
-            return;
         }
     }
 }

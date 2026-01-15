@@ -1,3 +1,5 @@
+// Script obsolète (visée alternative) retiré du build pour le noyau minimal
+#if false
 using UnityEngine;
 
 public class TPSAim : MonoBehaviour
@@ -17,8 +19,8 @@ public class TPSAim : MonoBehaviour
         else
             targetPoint = ray.GetPoint(maxDistance);
 
-        // Rotation MONDIALE (pas locale)
         Vector3 direction = targetPoint - transform.position;
         transform.rotation = Quaternion.LookRotation(direction);
     }
 }
+#endif

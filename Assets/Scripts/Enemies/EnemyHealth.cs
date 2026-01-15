@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IEnemyHealth
 {
     [SerializeField] private EnemyData enemyData;
+    public float maxHealth = 30;
     private float currentHealth;
     private Renderer meshRenderer;
     
@@ -17,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        
+        Debug.Log(gameObject.name + " hit! HP: " + currentHealth);
         // Feedback visuel pour montrer que l'ennemi est touché
         if (meshRenderer != null)
         {
@@ -34,6 +35,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         // TODO: Yanis ajoutera le drop d'XP ici
+        Debug.Log(gameObject.name + " dead");
         Destroy(gameObject);
     }
     

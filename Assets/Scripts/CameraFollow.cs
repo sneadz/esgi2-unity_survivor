@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraTPS : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class CameraTPS : MonoBehaviour
     public float followSpeed = 10f;
 
     [Header("Rotation")]
-    public float sensitivity = 200f;
+    public float sensitivity = 5000f;
     public float minY = -30f;
     public float maxY = 60f;
 
@@ -20,8 +21,9 @@ public class CameraTPS : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // La caméra est fixe: on ne verrouille plus le curseur ni ne cache la souris
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         Vector3 angles = transform.eulerAngles;
         yaw = angles.y;
@@ -32,9 +34,9 @@ public class CameraTPS : MonoBehaviour
     {
         if (!target) return;
 
-        // 🔹 Souris
-        yaw += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        pitch -= Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        // Caméra FIXE: on n'utilise plus la souris pour modifier yaw/pitch
+        // yaw et pitch restent ceux définis au Start (orientation de la caméra dans la scène)
+        // On conserve le pitch actuel (initial) et on le borne tout de même au cas où il serait modifié ailleurs
         pitch = Mathf.Clamp(pitch, minY, maxY);
 
         Quaternion rot = Quaternion.Euler(pitch, yaw, 0);

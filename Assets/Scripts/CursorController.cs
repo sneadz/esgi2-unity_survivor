@@ -1,3 +1,5 @@
+// Script obsolète pour ce projet minimal (gestion joueur/ennemi/arme/tir uniquement)
+#if false
 using UnityEngine;
 
 public class CursorController : MonoBehaviour
@@ -12,7 +14,6 @@ public class CursorController : MonoBehaviour
 
     void Update()
     {
-        // Toggle avec Échap
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             cursorVisibleOnStart = !cursorVisibleOnStart;
@@ -28,3 +29,4 @@ public class CursorController : MonoBehaviour
             : CursorLockMode.Locked;
     }
 }
+#endif
