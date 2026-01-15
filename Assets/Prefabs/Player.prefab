@@ -978,7 +978,6 @@ GameObject:
   - component: {fileID: 6554302414683204219}
   - component: {fileID: 3237112492301869610}
   - component: {fileID: 6906392385172027514}
-  - component: {fileID: 1568759721523104391}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1100,21 +1099,3 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 112
   m_CollisionDetection: 3
---- !u!114 &1568759721523104391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8141477141361612440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc0af6c7c24f45c386dc774799107e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  _rigidbody: {fileID: 6906392385172027514}
-  soldierAnimator: {fileID: 1606540337723875950}
-  _numberOfJumps: 2
-  MoveSpeed: 10
-  JumpForce: 10
-  rotationSpeed: 10
