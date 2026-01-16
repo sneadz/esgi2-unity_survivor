@@ -20,11 +20,12 @@ public class AutoShoot : MonoBehaviour
     void Update()
     {
         // Sécurité: si fireRate <= 0, on ne tire pas
-        if (fireRate <= 0f) return;
+        float effectiveFireRate = fireRate * PlayerXP.playerFireRateMultiplier;
+        if (effectiveFireRate <= 0f) return;
 
         timer += Time.deltaTime;
 
-        if (timer >= 1f / fireRate)
+        if (timer >= 1f / effectiveFireRate)
         {
             timer = 0f;
             ShootNearestEnemy();
@@ -146,8 +147,9 @@ public class AutoShoot : MonoBehaviour
             // Fallback hitscan si pas de projectile
             if (Physics.Raycast(muzzle.position, direction, out RaycastHit hit, range))
             {
-                // Centralisé via DamageUtility
-                DamageUtility.ApplyDamage(hit.collider, damage);
+                // Centralisé via DamageUtility, avec scaling de dégâts du joueur
+                int finalDamage = Mathf.RoundToInt(damage * PlayerXP.playerDamageMultiplier);
+                DamageUtility.ApplyDamage(hit.collider, finalDamage);
             }
             Debug.DrawRay(muzzle.position, direction * range, Color.cyan, 0.2f);
         }

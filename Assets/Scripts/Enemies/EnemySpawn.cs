@@ -43,6 +43,10 @@ public class EnemySpawn : MonoBehaviour
     [Tooltip("Nombre maximum d'ennemis par vague en fin de rampe")]
     public int maxPerWave = 6;
 
+    [Header("Limite globale d'ennemis")]
+    [Tooltip("Nombre maximum d'ennemis présents en même temps sur la carte (<= 0 = illimité).")]
+    public int maxEnemies = 50;
+
     [Header("Placement au sol")]
     [Tooltip("Essayer d'aligner le spawn sur le sol via un raycast vers le bas")]
     public bool alignToGround = true;
@@ -90,7 +94,30 @@ public class EnemySpawn : MonoBehaviour
 
     void SpawnWave(int count)
     {
-        for (int i = 0; i < count; i++)
+        // Limite globale d'ennemis : si maxEnemies > 0, on ne spawn que si on n'a pas atteint la limite
+        int allowedCount = count;
+        if (maxEnemies > 0 && !string.IsNullOrEmpty(enemyTag))
+        {
+            int current = 0;
+            try
+            {
+                current = GameObject.FindGameObjectsWithTag(enemyTag).Length;
+            }
+            catch
+            {
+                current = 0;
+            }
+
+            int remaining = maxEnemies - current;
+            if (remaining <= 0)
+            {
+                return; // déjà au max, on ne spawn pas cette vague
+            }
+
+            allowedCount = Mathf.Min(count, remaining);
+        }
+
+        for (int i = 0; i < allowedCount; i++)
         {
             Vector3 pos = RandomPointOnAnnulus(target.position, innerNoSpawnRadius, spawnRadius);
 

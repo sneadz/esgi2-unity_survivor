@@ -11,7 +11,6 @@ public class PlayerClassManager : MonoBehaviour
 
     [Header("Références tir")]
     public AutoShoot autoShoot; // optionnel
-    public Gun gun;             // optionnel
 
     void Start()
     {
@@ -32,14 +31,6 @@ public class PlayerClassManager : MonoBehaviour
             autoShoot.damage = currentClass.autoDamage;
             if (currentClass.autoBulletPrefab != null)
                 autoShoot.bulletPrefab = currentClass.autoBulletPrefab;
-        }
-
-        if (gun != null)
-        {
-            gun.range = currentClass.gunRange;
-            gun.damage = currentClass.gunDamage;
-            if (currentClass.gunBulletPrefab != null)
-                gun.bulletPrefab = currentClass.gunBulletPrefab;
         }
     }
 
